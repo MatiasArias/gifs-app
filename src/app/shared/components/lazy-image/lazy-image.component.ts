@@ -1,9 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-lazy-image',
+  selector: 'shared-lazy-image',
   templateUrl: './lazy-image.component.html',
 })
-export class LazyImageComponent {
+export class LazyImageComponent implements OnInit {
 
+
+  @Input()
+  public url!: string;
+
+  @Input()
+  public alt: string = '';
+
+  public hasLoaded: boolean = false;
+
+  onLoad(){
+    this.hasLoaded=true
+  }
+
+  ngOnInit(): void {
+    if(!this.url) throw new Error('URL property is rquired')
+  }
 }
